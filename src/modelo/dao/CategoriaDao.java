@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.bean.Categoria;
 import modelo.conexao.FabricaConexao;
 
@@ -73,4 +75,25 @@ public class CategoriaDao {
         
     }
     
+    //METODO PARA PREENCHER A TABELA BAIRRO
+    public List<Categoria> listar() throws SQLException{                  
+        List<Categoria> lista = new ArrayList<>();
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from categoria order by catnome";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        
+        while(rs.next()){
+            Categoria categoria = new Categoria();
+            categoria.setCodigo(rs.getInt("catcodigo"));
+            categoria.setNome(rs.getString("catnome"));
+            categoria.setDescricao(rs.getString("catdescricao"));
+            categoria.setPrecoDiaria(rs.getDouble("catprecodiaria"));
+            lista.add(categoria);
+        }
+        
+        FabricaConexao.fecharConexao();
+        return lista;
+    }// fim do metodo listar
 }
+

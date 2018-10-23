@@ -17,9 +17,13 @@ public class FuncionarioDao {
     
     public void inserir(Funcionario funcionario) throws SQLException{
         conecta = FabricaConexao.conexaoBanco();
-        sql = "insert into funcionario(funnome) values (?)";
+        sql = "insert into funcionario(funmatricula, funnome, funlogin, funsenha, fungerente) values (?, ?, ?, ?, ?)";
         pstm = conecta.prepareStatement(sql);
-        pstm.setString(1, funcionario.getNome());
+        pstm.setInt(1, funcionario.getMatricula());
+        pstm.setString(2, funcionario.getNome());
+        pstm.setString(3, funcionario.getLogin());
+        pstm.setString(4, funcionario.getSenha());
+//        pstm.setInt(5, funcionario.getGerente());
         pstm.execute();
     
         sql = "insert into funcionario(funmatricula) values (?)";
@@ -89,5 +93,9 @@ public class FuncionarioDao {
         FabricaConexao.fecharConexao();
         
     }
+    
+    public void validarLogin(){
+        
+    }//fim do método validarLogin
     
 }

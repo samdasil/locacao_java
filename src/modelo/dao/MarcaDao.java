@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.bean.Marca;
 import modelo.conexao.FabricaConexao;
 
@@ -72,4 +74,24 @@ public class MarcaDao {
         FabricaConexao.fecharConexao();
         
     }//fim metodo exclusao
+    
+    public List<Marca> listar() throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from marca";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        List<Marca> lista = new ArrayList<>();
+        while(rs.next()){
+            Marca marca = new Marca();
+            marca.setCodigo(rs.getInt("marcodigo"));
+            marca.setDescricao(rs.getString("mardescricao"));
+            lista.add(marca);
+        }
+        
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista
+    
+    
+    
 }
