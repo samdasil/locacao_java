@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.bean.Cliente;
 import modelo.conexao.FabricaConexao;
 
@@ -86,6 +88,27 @@ public class ClienteDao {
         
     }//fim metodo excluir cliente
     
+    public List<Cliente> listar() throws SQLException{                  
+        List<Cliente> lista = new ArrayList<>();
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from cliente order by clinome ";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        
+        while(rs.next()){
+            Cliente cliente = new Cliente();
+            cliente.setCpf(rs.getString("clicpf"));
+            cliente.setNome(rs.getString("catnome"));
+            cliente.setRg(rs.getString("clirg"));
+            cliente.setCnh(rs.getString("clicnh"));
+            cliente.setNascimento(rs.getInt("clinascimento"));
+            cliente.setEndereco(rs.getString("cliendereco"));
+            lista.add(cliente);
+        }
+        
+        FabricaConexao.fecharConexao();
+        return lista;
+    }// fim do metodo listar  
         
     
 }//fim clienteDao

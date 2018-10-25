@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.bean.Servico;
 import modelo.conexao.FabricaConexao;
 
@@ -64,5 +66,22 @@ public class ServicoDao {
         FabricaConexao.fecharConexao();
         
     }
+    
+    public List<Servico> listar() throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from servico";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        List<Servico> lista = new ArrayList<>();
+        while(rs.next()){
+            Servico servico = new Servico();
+            servico.setCodigo(rs.getInt("oficodigo"));
+            servico.setDescricao(rs.getString("ofinome"));
+            lista.add(servico);
+        }
+        
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista
     
 }//fim servicoDao

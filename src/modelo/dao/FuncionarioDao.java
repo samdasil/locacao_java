@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.bean.Funcionario;
 import modelo.conexao.FabricaConexao;
 
@@ -94,8 +96,29 @@ public class FuncionarioDao {
         
     }
     
+    public List<Funcionario> listar() throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from funcionario";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        List<Funcionario> lista = new ArrayList<>();
+        while(rs.next()){
+            Funcionario funcionario = new Funcionario();
+            funcionario.setMatricula(rs.getInt("funmatricula"));
+            funcionario.setNome(rs.getString("funnome"));
+            funcionario.setLogin(rs.getString("funlogin"));
+            funcionario.setSenha(rs.getString("funsenha"));
+            //funcionario.setGerente(rs.getInt("fungerente"));
+            lista.add(funcionario);
+        }
+        
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista 
+    
     public void validarLogin(){
         
     }//fim do método validarLogin
+    
     
 }

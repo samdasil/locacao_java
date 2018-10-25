@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.bean.Oficina;
 import modelo.conexao.FabricaConexao;
 
@@ -66,6 +68,23 @@ public class OficinaDao {
         FabricaConexao.fecharConexao();
         
     }//fim metodo ecluir oficina
+    
+    public List<Oficina> listar() throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from oficina";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        List<Oficina> lista = new ArrayList<>();
+        while(rs.next()){
+            Oficina oficina = new Oficina();
+            oficina.setCodigo(rs.getInt("oficodigo"));
+            oficina.setNome(rs.getString("ofinome"));
+            lista.add(oficina);
+        }
+        
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista
     
     
 }//fim oficinaDao

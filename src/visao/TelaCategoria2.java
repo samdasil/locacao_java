@@ -42,7 +42,7 @@ public class TelaCategoria2 extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("KoT - Categorias");
+        setTitle("KoT - Listar Categorias");
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);

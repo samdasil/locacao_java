@@ -79,7 +79,7 @@ public class CategoriaDao {
     public List<Categoria> listar() throws SQLException{                  
         List<Categoria> lista = new ArrayList<>();
         conecta = FabricaConexao.conexaoBanco();
-        sql = "select * from categoria order by catnome";
+        sql = "select * from categoria order by catnome ";
         pstm = conecta.prepareStatement(sql);
         rs = pstm.executeQuery();
         
@@ -94,6 +94,6 @@ public class CategoriaDao {
         
         FabricaConexao.fecharConexao();
         return lista;
-    }// fim do metodo listar
+    }// fim do metodo listar  
 }
 
