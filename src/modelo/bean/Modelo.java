@@ -31,7 +31,6 @@ public class Modelo {
     public void setMarca(Marca marca) {
         this.marca = marca;
     }
-    
-   
+     
     
 }

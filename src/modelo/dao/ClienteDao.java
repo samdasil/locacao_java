@@ -98,7 +98,7 @@ public class ClienteDao {
         while(rs.next()){
             Cliente cliente = new Cliente();
             cliente.setCpf(rs.getString("clicpf"));
-            cliente.setNome(rs.getString("catnome"));
+            cliente.setNome(rs.getString("clinome"));
             cliente.setRg(rs.getString("clirg"));
             cliente.setCnh(rs.getString("clicnh"));
             cliente.setNascimento(rs.getInt("clinascimento"));
