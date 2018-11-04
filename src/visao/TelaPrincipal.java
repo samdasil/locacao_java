@@ -5,6 +5,9 @@
  */
 package visao;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +21,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        URL url = this.getClass().getResource("/imagens/logo-48x48.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -75,7 +81,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btLocacao.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         btLocacao.setForeground(new java.awt.Color(102, 102, 102));
         btLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locacao-48x48.png"))); // NOI18N
+        btLocacao.setMnemonic('c');
         btLocacao.setText("Locações");
+        btLocacao.setToolTipText("");
         btLocacao.setFocusable(false);
         btLocacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btLocacao.setMargin(new java.awt.Insets(3, 14, 3, 14));
@@ -105,6 +113,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btCarro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btCarro.setMargin(new java.awt.Insets(3, 14, 3, 14));
         btCarro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCarroActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btCarro);
 
         btConserto.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -162,14 +175,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMarquivo.setText("Sistema");
         jMarquivo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
 
-        itperfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itperfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itperfil.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcionario-20x20.png"))); // NOI18N
         itperfil.setText("Meus dados");
         jMarquivo.add(itperfil);
         jMarquivo.add(jSeparator1);
 
-        itSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itSair.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair-20x20.png"))); // NOI18N
         itSair.setText("Sair");
@@ -177,16 +190,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMarquivo);
 
+        jMlocacoes.setMnemonic('c');
         jMlocacoes.setText("Consultas");
         jMlocacoes.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
 
-        itCarro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itCarro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itCarro.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itCarro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/carro-20x20.png"))); // NOI18N
         itCarro.setText("Carro");
+        itCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itCarroActionPerformed(evt);
+            }
+        });
         jMlocacoes.add(itCarro);
 
-        itCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itCategoria.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/categoria-20x20.png"))); // NOI18N
         itCategoria.setText("Categoria");
@@ -197,7 +216,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMlocacoes.add(itCategoria);
 
-        itCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itCliente.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cliente-20x20.png"))); // NOI18N
         itCliente.setText("Cliente");
@@ -208,19 +227,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMlocacoes.add(itCliente);
 
-        itConserto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itConserto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itConserto.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itConserto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/conserto-20x20.png"))); // NOI18N
         itConserto.setText("Conserto");
         jMlocacoes.add(itConserto);
 
-        itLocacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itLocacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itLocacao.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locacao-20x20.png"))); // NOI18N
         itLocacao.setText("Locação");
         jMlocacoes.add(itLocacao);
 
-        itMarca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itMarca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itMarca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itMarca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/marca-20x20.png"))); // NOI18N
         itMarca.setText("Marca");
@@ -231,7 +250,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMlocacoes.add(itMarca);
 
-        itModelo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itModelo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itModelo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itModelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/modelo-20x20.png"))); // NOI18N
         itModelo.setText("Modelo");
@@ -242,24 +261,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMlocacoes.add(itModelo);
 
-        itOficina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itOficina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itOficina.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itOficina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/oficina-20x20.png"))); // NOI18N
         itOficina.setText("Oficina");
+        itOficina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itOficinaActionPerformed(evt);
+            }
+        });
         jMlocacoes.add(itOficina);
 
-        itServico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itServico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itServico.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/servico-20x20.png"))); // NOI18N
         itServico.setText("Serviço");
+        itServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itServicoActionPerformed(evt);
+            }
+        });
         jMlocacoes.add(itServico);
 
         jMenuBar1.add(jMlocacoes);
 
+        jMrelatorios.setMnemonic('r');
         jMrelatorios.setText("Relatórios");
         jMrelatorios.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
 
-        itRelatorioLocacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itRelatorioLocacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itRelatorioLocacao.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itRelatorioLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locacao-20x20.png"))); // NOI18N
         itRelatorioLocacao.setText("Locações");
@@ -267,17 +297,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMrelatorios);
 
+        jMsobre.setMnemonic('a');
         jMsobre.setText("Ajuda");
         jMsobre.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
 
-        itTutorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itTutorial.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itTutorial.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itTutorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tutorial-20x20.png"))); // NOI18N
         itTutorial.setText("Tutorial");
         jMsobre.add(itTutorial);
         jMsobre.add(jSeparator2);
 
-        itSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        itSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itSobre.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sobre-20x20.png"))); // NOI18N
         itSobre.setText("Sobre");
@@ -346,6 +377,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jDprincipal.add(obj);
         obj.setVisible(true);
     }//GEN-LAST:event_btClienteActionPerformed
+
+    private void itOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itOficinaActionPerformed
+        TelaConsultarOficina obj = new TelaConsultarOficina();
+        jDprincipal.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_itOficinaActionPerformed
+
+    private void itServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itServicoActionPerformed
+        TelaConsultarServico obj = new TelaConsultarServico();
+        jDprincipal.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_itServicoActionPerformed
+
+    private void btCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarroActionPerformed
+        TelaConsultarCarro obj = new TelaConsultarCarro();
+        jDprincipal.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_btCarroActionPerformed
+
+    private void itCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itCarroActionPerformed
+        TelaConsultarCarro obj = new TelaConsultarCarro();
+        jDprincipal.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_itCarroActionPerformed
 
     /**
      * @param args the command line arguments

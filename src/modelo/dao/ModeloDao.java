@@ -65,9 +65,13 @@ public class ModeloDao {
             modelo = new Modelo();
             modelo.setCodigo(rs.getInt("modcodigo"));
             modelo.setDescricao(rs.getString("moddescricao"));
+            
+            //setando a marca
             Marca marca = new Marca();
             marca.setCodigo(rs.getInt("marcodigo"));
             marca.setDescricao(rs.getString("mardescricao"));
+            
+            //finalizando o set
             modelo.setMarca(marca);
         }
         FabricaConexao.fecharConexao();
@@ -88,7 +92,7 @@ public class ModeloDao {
     
     public List<Modelo> listar() throws SQLException{
         conecta = FabricaConexao.conexaoBanco();
-        sql = "select * from modelo join marca on marcodigo = modmarcodigo";
+        sql = "select * from modelo join marca on marcodigo = modmarcodigo order by moddescricao";
         pstm = conecta.prepareStatement(sql);
         rs = pstm.executeQuery();
         List<Modelo> lista = new ArrayList<>();
@@ -107,6 +111,24 @@ public class ModeloDao {
         return lista;
     }//fim de lista 
     
-    
+    public List<Modelo> buscar(String busca) throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from modelo inner join marca on marcodigo = modmarcodigo  where modcodigo = '"+busca+"' or moddescricao like '%"+busca+"%' or mardescricao like '%"+busca+"%' order by moddescricao";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        List<Modelo> lista = new ArrayList<>();
+        while(rs.next()){
+            Modelo modelo = new Modelo();
+            modelo.setCodigo(rs.getInt("modcodigo"));
+            modelo.setDescricao(rs.getString("moddescricao"));
+            Marca marca = new Marca();
+            marca.setCodigo(rs.getInt("marcodigo"));
+            marca.setDescricao(rs.getString("mardescricao"));
+            modelo.setMarca(marca);
+            lista.add(modelo);
+        }
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista de pesquisa
     
 }

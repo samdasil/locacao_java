@@ -37,7 +37,7 @@ public class TelaVisualizarMarca extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel11.setText("Descrição");
 
-        jTdescricao.setEnabled(false);
+        jTdescricao.setFocusable(false);
         jTdescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTdescricaoActionPerformed(evt);
@@ -47,9 +47,9 @@ public class TelaVisualizarMarca extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel12.setText("Código");
 
-        jTcodigo.setEnabled(false);
+        jTcodigo.setFocusable(false);
 
-        jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/save-30x30.png"))); // NOI18N
+        jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar-35x35.png"))); // NOI18N
         jBsalvar.setBorder(null);
         jBsalvar.setBorderPainted(false);
         jBsalvar.setContentAreaFilled(false);
@@ -128,7 +128,7 @@ public class TelaVisualizarMarca extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleParent(this);

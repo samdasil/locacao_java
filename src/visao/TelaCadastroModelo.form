@@ -118,7 +118,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btCadastrarMarca" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="txNome" alignment="1" min="-2" pref="465" max="-2" attributes="0"/>
+                              <Component id="jTdescricao" alignment="1" min="-2" pref="465" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -132,7 +132,7 @@
                   <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txNome" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTdescricao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
             <Property name="text" type="java.lang.String" value="Nome *"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txNome">
+        <Component class="javax.swing.JTextField" name="jTdescricao">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Abel" size="14" style="0"/>

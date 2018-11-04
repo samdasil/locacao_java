@@ -85,6 +85,23 @@ public class OficinaDao {
         FabricaConexao.fecharConexao();
         return lista;
     }//fim de lista
-    
+
+    public List<Oficina> buscar(String busca) throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from oficina where oficodigo = '"+busca+"' or ofinome like '%"+busca+"%' order by ofinome";
+        pstm = conecta.prepareStatement(sql);
+        //pstm.setString(1, busca);
+        //pstm.setString(2, busca);
+        rs = pstm.executeQuery();
+        List<Oficina> lista = new ArrayList<>();
+        while(rs.next()){
+            Oficina oficina = new Oficina();
+            oficina.setCodigo(rs.getInt("oficodigo"));
+            oficina.setNome(rs.getString("ofinome"));
+            lista.add(oficina);
+        }
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista de pesquisa
     
 }//fim oficinaDao

@@ -23,5 +23,9 @@ public class Servico {
         this.descricao = descricao;
     }
     
+    @Override
+    public String toString() {
+        return descricao;
+    }
     
 }

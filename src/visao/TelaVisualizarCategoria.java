@@ -44,17 +44,20 @@ public class TelaVisualizarCategoria extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel8.setText("Nome");
 
-        jTnome.setEnabled(false);
+        jTnome.setForeground(new java.awt.Color(0, 0, 255));
+        jTnome.setFocusable(false);
 
         jLabel9.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel9.setText("Preço (R$)");
 
-        jTprecoDiaria.setEnabled(false);
+        jTprecoDiaria.setForeground(new java.awt.Color(0, 0, 255));
+        jTprecoDiaria.setFocusable(false);
 
         jLabel11.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel11.setText("Descrição");
 
-        jTdescricao.setEnabled(false);
+        jTdescricao.setForeground(new java.awt.Color(0, 0, 255));
+        jTdescricao.setFocusable(false);
         jTdescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTdescricaoActionPerformed(evt);
@@ -64,7 +67,8 @@ public class TelaVisualizarCategoria extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel12.setText("Código");
 
-        jTcodigo.setEnabled(false);
+        jTcodigo.setForeground(new java.awt.Color(0, 0, 255));
+        jTcodigo.setFocusable(false);
 
         jBsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar-35x35.png"))); // NOI18N
         jBsalvar.setBorder(null);

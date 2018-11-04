@@ -47,19 +47,19 @@ public class TelaVisualizarCliente extends javax.swing.JDialog {
         jLabel6.setText("Nome ");
 
         jTnome.setForeground(new java.awt.Color(0, 0, 255));
-        jTnome.setEnabled(false);
+        jTnome.setFocusable(false);
 
         jLabel8.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel8.setText("CPF ");
 
         jTcpf.setForeground(new java.awt.Color(0, 0, 255));
-        jTcpf.setEnabled(false);
+        jTcpf.setFocusable(false);
 
         jLabel9.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel9.setText("Endereço");
 
         jTendereco.setForeground(new java.awt.Color(0, 0, 255));
-        jTendereco.setEnabled(false);
+        jTendereco.setFocusable(false);
         jTendereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTenderecoActionPerformed(evt);
@@ -85,19 +85,19 @@ public class TelaVisualizarCliente extends javax.swing.JDialog {
         jLabel11.setText("RG ");
 
         jTrg.setForeground(new java.awt.Color(0, 0, 255));
-        jTrg.setEnabled(false);
+        jTrg.setFocusable(false);
 
         jLabel12.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel12.setText("CNH");
 
         jTcnh.setForeground(new java.awt.Color(0, 0, 255));
-        jTcnh.setEnabled(false);
+        jTcnh.setFocusable(false);
 
         jLabel13.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel13.setText("Ano do Nascimento ");
 
         jTnascimento.setForeground(new java.awt.Color(0, 0, 255));
-        jTnascimento.setEnabled(false);
+        jTnascimento.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

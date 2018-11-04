@@ -8,7 +8,7 @@ public class Carro {
     private String placa;
     private int ano;
     private String cor;
-    private String status;
+    private int status;
     private Categoria categoria;
     private Modelo modelo;
 
@@ -44,11 +44,11 @@ public class Carro {
         this.cor = cor;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -66,6 +66,11 @@ public class Carro {
 
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
+    }
+    
+    @Override
+    public String toString() {
+        return chassi;
     }
     
 }

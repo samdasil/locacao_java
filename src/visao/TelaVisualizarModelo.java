@@ -32,7 +32,6 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
         jTmarca = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("KoT - Locação de Carros  - v1.0");
@@ -61,7 +60,8 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
         jLabel3.setText("Nome ");
 
         jTnome.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-        jTnome.setEnabled(false);
+        jTnome.setForeground(new java.awt.Color(0, 0, 255));
+        jTnome.setFocusable(false);
 
         jLabel2.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel2.setText("Marca ");
@@ -70,10 +70,12 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
         jLabel4.setText("Código");
 
         jTcodigo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-        jTcodigo.setEnabled(false);
+        jTcodigo.setForeground(new java.awt.Color(0, 0, 255));
+        jTcodigo.setFocusable(false);
 
         jTmarca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-        jTmarca.setEnabled(false);
+        jTmarca.setForeground(new java.awt.Color(0, 0, 255));
+        jTmarca.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,9 +117,6 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/list-20x20.png"))); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Abel", 0, 10)); // NOI18N
-        jLabel8.setText("(*) Campos obrigatórios");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,15 +133,10 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jSeparator1)
-                        .addGap(6, 6, 6))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel8)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGap(6, 6, 6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,14 +151,12 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleParent(this);
 
-        setSize(new java.awt.Dimension(531, 367));
+        setSize(new java.awt.Dimension(531, 358));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -257,7 +249,6 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTcodigo;
@@ -265,11 +256,11 @@ public class TelaVisualizarModelo extends javax.swing.JDialog {
     private javax.swing.JTextField jTnome;
     // End of variables declaration//GEN-END:variables
 
- public void receberDados(Modelo modelo){
+    public void receberDados(Modelo modelo){
         
         jTcodigo.setText(Integer.toString(modelo.getCodigo()));
         jTnome.setText(modelo.getDescricao());
-        jTmarca.setText(modelo.getDescricao());
+        jTmarca.setText(modelo.getMarca().getDescricao());
         
     }
 }

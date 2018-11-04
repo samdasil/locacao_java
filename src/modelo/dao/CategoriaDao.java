@@ -94,5 +94,23 @@ public class CategoriaDao {
         FabricaConexao.fecharConexao();
         return lista;
     }// fim do metodo listar  
+    
+    public List<Categoria> buscar(String busca) throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from categoria where catcodigo = '"+busca+"' or catnome like '%"+busca+"%' or catprecodiaria = '"+busca+"' or catdescricao like '%"+busca+"%' order by catnome ";
+        pstm = conecta.prepareStatement(sql);
+        rs = pstm.executeQuery();
+        List<Categoria> lista = new ArrayList<>();
+        while(rs.next()){
+            Categoria categoria = new Categoria();
+            categoria.setCodigo(rs.getInt("catcodigo"));
+            categoria.setNome(rs.getString("catnome"));
+            categoria.setPrecoDiaria(rs.getDouble("catprecodiaria"));
+            categoria.setDescricao(rs.getString("catdescricao"));
+            lista.add(categoria);
+        }
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista de pesquisa
 }
 

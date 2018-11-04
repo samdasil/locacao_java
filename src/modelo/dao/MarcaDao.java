@@ -92,6 +92,23 @@ public class MarcaDao {
         return lista;
     }//fim de lista 
     
+    public List<Marca> buscar(String busca) throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from marca where marcodigo = '"+busca+"' or mardescricao like '%"+busca+"%' order by mardescricao";
+        pstm = conecta.prepareStatement(sql);
+        //pstm.setString(1, busca);
+        //pstm.setString(2, busca);
+        rs = pstm.executeQuery();
+        List<Marca> lista = new ArrayList<>();
+        while(rs.next()){
+            Marca marca = new Marca();
+            marca.setCodigo(rs.getInt("marcodigo"));
+            marca.setDescricao(rs.getString("mardescricao"));
+            lista.add(marca);
+        }
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista de pesquisa
     
     
 }

@@ -26,7 +26,9 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         jtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbModelo = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lbLogo = new javax.swing.JLabel();
+        lbResultado = new javax.swing.JLabel();
+        btAtualizar = new javax.swing.JToggleButton();
         btVisualizar = new javax.swing.JToggleButton();
         btInserir = new javax.swing.JToggleButton();
         btAlterar = new javax.swing.JToggleButton();
@@ -48,8 +50,15 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         lbBuscar.setText("Buscar");
 
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa-20x20.png"))); // NOI18N
+        btBuscar.setToolTipText("Buscar");
         btBuscar.setBorder(null);
         btBuscar.setContentAreaFilled(false);
+        btBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
         jtBuscar.setColumns(5);
         jtBuscar.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -81,11 +90,25 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tbModelo);
 
-        jLabel1.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/modelo-48x48.png"))); // NOI18N
-        jLabel1.setText("Modelos");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lbLogo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/modelo-48x48.png"))); // NOI18N
+        lbLogo.setText("Modelos");
+        lbLogo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lbLogo.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        lbResultado.setFont(new java.awt.Font("Abel", 0, 12)); // NOI18N
+        lbResultado.setForeground(new java.awt.Color(102, 102, 255));
+
+        btAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/atualizar-20x20.png"))); // NOI18N
+        btAtualizar.setToolTipText("Atualizar lista");
+        btAtualizar.setBorder(null);
+        btAtualizar.setContentAreaFilled(false);
+        btAtualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,11 +123,16 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbBuscar)
                         .addGap(18, 18, 18)
-                        .addComponent(jtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btBuscar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btBuscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btAtualizar))
+                            .addComponent(lbResultado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(lbLogo)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -117,11 +145,14 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
                             .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lbBuscar)
-                                .addComponent(jtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbResultado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -132,6 +163,7 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         btVisualizar.setText("Visualizar");
         btVisualizar.setBorder(null);
         btVisualizar.setBorderPainted(false);
+        btVisualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btVisualizar.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         btVisualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +177,7 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         btInserir.setText("Inserir");
         btInserir.setBorder(null);
         btInserir.setBorderPainted(false);
+        btInserir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btInserir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btInserir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         btInserir.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +191,7 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         btAlterar.setText("Alterar");
         btAlterar.setBorder(null);
         btAlterar.setBorderPainted(false);
+        btAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btAlterar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btAlterar.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         btAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +205,7 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         btExcluir.setText("Excluir");
         btExcluir.setBorder(null);
         btExcluir.setBorderPainted(false);
+        btExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btExcluir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +269,7 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
                    
             modelo.setCodigo((int) tbModelo.getModel().getValueAt(celula, 0));
             modelo.setDescricao(tbModelo.getModel().getValueAt(celula, 1).toString());
+            modelo.setMarca((Marca) tbModelo.getModel().getValueAt(celula, 2));
             
             obj.receberDados(modelo);
             obj.setVisible(true);
@@ -287,18 +323,32 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tbModeloMouseClicked
 
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        buscarModelo();
+        jtBuscar.requestFocus();
+    }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
+        jtBuscar.setText("");
+        jtBuscar.requestFocus();
+        lbResultado.setText("");
+        listarModelo();
+    }//GEN-LAST:event_btAtualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btAlterar;
+    private javax.swing.JToggleButton btAtualizar;
     private javax.swing.JToggleButton btBuscar;
     private javax.swing.JToggleButton btExcluir;
     private javax.swing.JToggleButton btInserir;
     private javax.swing.JToggleButton btVisualizar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jtBuscar;
     private javax.swing.JLabel lbBuscar;
+    private javax.swing.JLabel lbLogo;
+    private javax.swing.JLabel lbResultado;
     private javax.swing.JTable tbModelo;
     // End of variables declaration//GEN-END:variables
 
@@ -317,6 +367,30 @@ public class TelaConsultarModelo extends javax.swing.JInternalFrame {
             }//fim for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao listar."+ex.getMessage());
+        }
+    }//fim listagem de modelo
+
+    //METODO PARA PREENCHER A TABELA MODELO POS BUSCA
+    public void buscarModelo(){
+        try {
+            String busca = jtBuscar.getText();
+            List<Modelo> lista = new ModeloDao().buscar(busca);
+            if(lista.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Não há resultados para : "+ busca);
+            }else{
+                DefaultTableModel tabela = (DefaultTableModel) tbModelo.getModel();
+                lbResultado.setText(lista.size() + " resultado(s) encontrado(s).");
+
+                //tbMarca.getColumnModel().getColumn(0).setPreferredWidth(5);
+                //tbMarca.getColumnModel().getColumn(1).setPreferredWidth(20);            
+                tabela.setNumRows(0);
+
+                for(Modelo modelo: lista){
+                    tabela.addRow(new Object[]{modelo.getCodigo(), modelo.getDescricao(), modelo.getMarca().getDescricao()});
+                }//fim for
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar busca."+ex.getMessage());
         }
     }//fim listagem de modelo
 

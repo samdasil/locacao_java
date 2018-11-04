@@ -54,7 +54,7 @@ public class ClienteDao {
         
     }//fim do metodo
     
-    //metodo para buscar uma marca no BD
+    //metodo para buscar uma cliente no BD
     public Cliente buscarCpf(String cpf) throws SQLException{
         Cliente cliente = null;
         conecta = FabricaConexao.conexaoBanco();
@@ -109,6 +109,27 @@ public class ClienteDao {
         FabricaConexao.fecharConexao();
         return lista;
     }// fim do metodo listar  
-        
+
+    public List<Cliente> buscar(String busca) throws SQLException{
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from cliente where clicpf = '%"+busca+"%' or clinome like '%"+busca+"%' or clirg like '%"+busca+"%' or clicnh like '%"+busca+"%' or cliendereco like '%"+busca+"%' or clinascimento = '"+busca+"' order by clinome";
+        pstm = conecta.prepareStatement(sql);
+        //pstm.setString(1, busca);
+        //pstm.setString(2, busca);
+        rs = pstm.executeQuery();
+        List<Cliente> lista = new ArrayList<>();
+        while(rs.next()){
+            Cliente cliente = new Cliente();
+            cliente.setCpf(rs.getString("clicpf"));
+            cliente.setNome(rs.getString("clinome"));
+            cliente.setRg(rs.getString("clirg"));
+            cliente.setCnh(rs.getString("clicnh"));
+            cliente.setEndereco(rs.getString("cliendereco"));
+            cliente.setNascimento(rs.getInt("clinascimento"));
+            lista.add(cliente);
+        }
+        FabricaConexao.fecharConexao();
+        return lista;
+    }//fim de lista de pesquisa
     
 }//fim clienteDao

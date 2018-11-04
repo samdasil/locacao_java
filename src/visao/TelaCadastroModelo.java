@@ -26,7 +26,7 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jBsalvar = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
-        txNome = new javax.swing.JTextField();
+        jTdescricao = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cbMarca = new javax.swing.JComboBox<>();
         btCadastrarMarca = new javax.swing.JToggleButton();
@@ -60,7 +60,7 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel3.setText("Nome *");
 
-        txNome.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jTdescricao.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel2.setText("Marca *");
@@ -93,7 +93,7 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
                                 .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btCadastrarMarca))
-                            .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +102,7 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,7 +257,7 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txNome;
+    private javax.swing.JTextField jTdescricao;
     // End of variables declaration//GEN-END:variables
 
     Modelo modelo = new Modelo();
@@ -265,18 +265,23 @@ public class TelaCadastroModelo extends javax.swing.JDialog {
     
     private void inserir(){
         Marca marca = (Marca) cbMarca.getSelectedItem();
-        modelo.setDescricao(txNome.getText());
-        modelo.setMarca(marca);
-        try {
-            modeloDao.inserir(modelo);
-            txNome.setText("");
-            cbMarca.setSelectedIndex(0);
-            txNome.requestFocus();
-            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
-        } catch (SQLException ex) {
-            System.out.println("Erro ao inserir: " + ex.getMessage());
-        }
-               
+        
+        if(jTdescricao.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Favor, preencher campo 'Descrição'.");
+            jTdescricao.requestFocus();
+        }else if(cbMarca.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Favor selecionar 'Marca'.");
+            cbMarca.requestFocus();
+        }else{
+                modelo.setDescricao(jTdescricao.getText());
+                modelo.setMarca(marca);
+            try {
+                modeloDao.inserir(modelo);
+                JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+            } catch (SQLException ex) {
+                System.out.println("Erro ao inserir: " + ex.getMessage());
+            }
+        }      
     }
     
     private void listarMarca(JComboBox combo){
