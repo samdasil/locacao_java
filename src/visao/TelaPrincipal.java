@@ -53,7 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itperfil = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         itSair = new javax.swing.JMenuItem();
-        jMlocacoes = new javax.swing.JMenu();
+        jMconserto = new javax.swing.JMenu();
         itCarro = new javax.swing.JMenuItem();
         itCategoria = new javax.swing.JMenuItem();
         itCliente = new javax.swing.JMenuItem();
@@ -128,6 +128,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btConserto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btConserto.setMargin(new java.awt.Insets(3, 14, 3, 14));
         btConserto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btConserto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsertoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btConserto);
 
         btRelatorio.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -190,9 +195,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMarquivo);
 
-        jMlocacoes.setMnemonic('c');
-        jMlocacoes.setText("Consultas");
-        jMlocacoes.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jMconserto.setMnemonic('c');
+        jMconserto.setText("Consultas");
+        jMconserto.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jMconserto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMconsertoActionPerformed(evt);
+            }
+        });
 
         itCarro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itCarro.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -203,7 +213,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itCarroActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itCarro);
+        jMconserto.add(itCarro);
 
         itCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itCategoria.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -214,7 +224,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itCategoriaActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itCategoria);
+        jMconserto.add(itCategoria);
 
         itCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itCliente.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -225,19 +235,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itClienteActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itCliente);
+        jMconserto.add(itCliente);
 
         itConserto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itConserto.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itConserto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/conserto-20x20.png"))); // NOI18N
         itConserto.setText("Conserto");
-        jMlocacoes.add(itConserto);
+        jMconserto.add(itConserto);
 
         itLocacao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itLocacao.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         itLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locacao-20x20.png"))); // NOI18N
         itLocacao.setText("Locação");
-        jMlocacoes.add(itLocacao);
+        jMconserto.add(itLocacao);
 
         itMarca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itMarca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -248,7 +258,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itMarcaActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itMarca);
+        jMconserto.add(itMarca);
 
         itModelo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itModelo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -259,7 +269,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itModeloActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itModelo);
+        jMconserto.add(itModelo);
 
         itOficina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itOficina.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -270,7 +280,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itOficinaActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itOficina);
+        jMconserto.add(itOficina);
 
         itServico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         itServico.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
@@ -281,9 +291,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 itServicoActionPerformed(evt);
             }
         });
-        jMlocacoes.add(itServico);
+        jMconserto.add(itServico);
 
-        jMenuBar1.add(jMlocacoes);
+        jMenuBar1.add(jMconserto);
 
         jMrelatorios.setMnemonic('r');
         jMrelatorios.setText("Relatórios");
@@ -402,6 +412,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_itCarroActionPerformed
 
+    private void jMconsertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMconsertoActionPerformed
+        TelaCadastroConserto obj = new TelaCadastroConserto(null, true);
+        jDprincipal.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_jMconsertoActionPerformed
+
+    private void btConsertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsertoActionPerformed
+        TelaCadastroConserto obj = new TelaCadastroConserto(null, true);
+        jDprincipal.add(obj);
+        obj.setVisible(true);
+    }//GEN-LAST:event_btConsertoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -462,8 +484,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMarquivo;
+    private javax.swing.JMenu jMconserto;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMlocacoes;
     private javax.swing.JMenu jMrelatorios;
     private javax.swing.JMenu jMsobre;
     private javax.swing.JPopupMenu.Separator jSeparator1;

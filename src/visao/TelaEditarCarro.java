@@ -6,13 +6,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 import modelo.bean.Carro;
 import modelo.bean.Categoria;
 import modelo.bean.Marca;
 import modelo.bean.Modelo;
 import modelo.dao.CarroDao;
 import modelo.dao.CategoriaDao;
-import modelo.dao.MarcaDao;
 import modelo.dao.ModeloDao;
 
 public class TelaEditarCarro extends javax.swing.JDialog {
@@ -39,13 +39,13 @@ public class TelaEditarCarro extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTchassi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTplaca = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTano = new javax.swing.JTextField();
         cbModelo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cbStatus = new javax.swing.JComboBox<>();
+        jTplaca = new javax.swing.JFormattedTextField();
+        jTano = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -93,12 +93,8 @@ public class TelaEditarCarro extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel5.setText("Placa *");
 
-        jTplaca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel6.setText("Ano *");
-
-        jTano.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
 
         cbModelo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         cbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Marca" }));
@@ -112,6 +108,30 @@ public class TelaEditarCarro extends javax.swing.JDialog {
         cbStatus.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponível", "Alugado", "Manutenção", "Indisponível" }));
 
+        try {
+            MaskFormatter mascara = new MaskFormatter("AAA-####");
+            mascara.setPlaceholderCharacter('_');
+
+            jTplaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mascara));
+
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+
+        };
+        jTplaca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+
+        try {
+            MaskFormatter mascara = new MaskFormatter("####");
+            mascara.setPlaceholderCharacter('_');
+
+            jTano.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mascara));
+
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+
+        };
+        jTano.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,8 +143,8 @@ public class TelaEditarCarro extends javax.swing.JDialog {
                         .addComponent(jBsalvar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(cbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,15 +154,7 @@ public class TelaEditarCarro extends javax.swing.JDialog {
                                         .addComponent(jLabel9)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(cbModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTchassi, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jTano, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,27 +165,33 @@ public class TelaEditarCarro extends javax.swing.JDialog {
                                 .addGap(35, 35, 35)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11))))))
+                                    .addComponent(jLabel11)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTchassi, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTchassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTchassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTano, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -386,20 +404,17 @@ public class TelaEditarCarro extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTano;
+    private javax.swing.JFormattedTextField jTano;
     private javax.swing.JTextField jTchassi;
     private javax.swing.JTextField jTcor;
-    private javax.swing.JTextField jTplaca;
+    private javax.swing.JFormattedTextField jTplaca;
     // End of variables declaration//GEN-END:variables
 
     Carro carro = new Carro();
     CarroDao carroDao = new CarroDao();
     
     private boolean alterar(){
-        Boolean result = null;
-        Categoria categoria = (Categoria) cbCategoria.getSelectedItem();
-        Modelo    modelo    = (Modelo) cbModelo.getSelectedItem();
-        int       status    = cbStatus.getSelectedIndex();
+        Boolean result = false;
         
         if(jTchassi.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Campo 'Chassi' é obrigatório.");
@@ -420,6 +435,10 @@ public class TelaEditarCarro extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Campo 'Modelo' é obrigatório.");
             cbModelo.requestFocus();
         }else{
+            Categoria categoria = (Categoria) cbCategoria.getSelectedItem();
+            Modelo    modelo    = (Modelo) cbModelo.getSelectedItem();
+            int       status    = cbStatus.getSelectedIndex();
+            
             carro.setChassi(jTchassi.getText());
             carro.setPlaca(jTplaca.getText());
             carro.setAno(Integer.parseInt(jTano.getText()));
@@ -429,8 +448,9 @@ public class TelaEditarCarro extends javax.swing.JDialog {
             carro.setModelo(modelo);
 
             try {
-                carroDao.inserir(carro);
+                carroDao.alterar(carro);
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+                result = true;
             } catch (SQLException ex) {
                 System.out.println("Erro ao inserir: " + ex.getMessage());
             }

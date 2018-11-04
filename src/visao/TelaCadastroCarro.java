@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 import modelo.bean.Carro;
 import modelo.bean.Categoria;
 import modelo.bean.Marca;
 import modelo.bean.Modelo;
 import modelo.dao.CarroDao;
 import modelo.dao.CategoriaDao;
-import modelo.dao.MarcaDao;
 import modelo.dao.ModeloDao;
 
 public class TelaCadastroCarro extends javax.swing.JDialog {
@@ -37,13 +37,13 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTchassi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTplaca = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTano = new javax.swing.JTextField();
         cbModelo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cbStatus = new javax.swing.JComboBox<>();
+        jTplaca = new javax.swing.JFormattedTextField();
+        jTano = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -75,30 +75,30 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
         jLabel3.setText("Cor *");
 
         jTcor.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jTcor.setNextFocusableComponent(cbStatus);
 
         jLabel2.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel2.setText("Categoria *");
 
         cbCategoria.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Categoria" }));
+        cbCategoria.setNextFocusableComponent(cbModelo);
 
         jLabel4.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel4.setText("Chassi *");
 
         jTchassi.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jTchassi.setNextFocusableComponent(jTplaca);
 
         jLabel5.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel5.setText("Placa *");
 
-        jTplaca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel6.setText("Ano *");
 
-        jTano.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
-
         cbModelo.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         cbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Modelo" }));
+        cbModelo.setNextFocusableComponent(jBsalvar);
 
         jLabel9.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         jLabel9.setText("Modelo *");
@@ -108,6 +108,33 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
 
         cbStatus.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponível", "Alugado", "Manutenção", "Indisponível" }));
+        cbStatus.setNextFocusableComponent(cbCategoria);
+
+        try {
+            MaskFormatter mascara = new MaskFormatter("AAA-####");
+            mascara.setPlaceholderCharacter('_');
+
+            jTplaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mascara));
+
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+
+        };
+        jTplaca.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jTplaca.setNextFocusableComponent(jTano);
+
+        try {
+            MaskFormatter mascara = new MaskFormatter("####");
+            mascara.setPlaceholderCharacter('_');
+
+            jTano.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mascara));
+
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+
+        };
+        jTano.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        jTano.setNextFocusableComponent(jTcor);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,10 +162,10 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTchassi, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -158,31 +185,28 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTchassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTplaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTchassi)
+                    .addComponent(jTplaca))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel11)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jTcor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGap(25, 25, 25)
+                            .addComponent(jTcor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTano, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -260,10 +284,9 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
     }//GEN-LAST:event_jBsalvarKeyPressed
 
     private void jBsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalvarActionPerformed
-
-        inserir();
-
-        dispose();
+        if(inserir()){
+            dispose();
+        }
     }//GEN-LAST:event_jBsalvarActionPerformed
 
     /**
@@ -357,19 +380,17 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTano;
+    private javax.swing.JFormattedTextField jTano;
     private javax.swing.JTextField jTchassi;
     private javax.swing.JTextField jTcor;
-    private javax.swing.JTextField jTplaca;
+    private javax.swing.JFormattedTextField jTplaca;
     // End of variables declaration//GEN-END:variables
 
     Carro carro = new Carro();
     CarroDao carroDao = new CarroDao();
     
-    private void inserir(){
-        Categoria categoria = (Categoria) cbCategoria.getSelectedItem();
-        Modelo    modelo    = (Modelo) cbModelo.getSelectedItem();
-        int       status    = cbStatus.getSelectedIndex();
+    private boolean inserir(){
+        Boolean result = false;
         
         if(jTchassi.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Campo 'Chassi' é obrigatório.");
@@ -390,6 +411,9 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Campo 'Modelo' é obrigatório.");
             cbModelo.requestFocus();
         }else{
+            Categoria categoria = (Categoria) cbCategoria.getSelectedItem();
+            Modelo    modelo    = (Modelo) cbModelo.getSelectedItem();
+            int       status    = cbStatus.getSelectedIndex();
         
             carro.setChassi(jTchassi.getText());
             carro.setPlaca(jTplaca.getText());
@@ -402,10 +426,12 @@ public class TelaCadastroCarro extends javax.swing.JDialog {
             try {
                 carroDao.inserir(carro);
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+                result = true;
             } catch (SQLException ex) {
                 System.out.println("Erro ao inserir: " + ex.getMessage());
             }
         } 
+        return result;
     }
     
     private void listarCategoria(JComboBox combo){
