@@ -370,13 +370,14 @@ public class TelaConsultarCarro extends javax.swing.JInternalFrame {
     public void listarCarro(){
         try {
             List<Carro> lista = new CarroDao().listar();
-            DefaultTableModel tabela = (DefaultTableModel) tbCarro.getModel();
+            DefaultTableModel tabela = (DefaultTableModel) tbCarro.getModel();            
             
             //tbCarro.getColumnModel().getColumn(0).setPreferredWidth(5);
             //tbCarro.getColumnModel().getColumn(1).setPreferredWidth(20);            
             tabela.setNumRows(0);
             
             for(Carro carro: lista){
+               
                 tabela.addRow(new Object[]{carro.getChassi(), carro.getPlaca(), carro.getAno(), carro.getCor(), carro.getStatus(), carro.getCategoria(), carro.getModelo()});
             }//fim for
         } catch (SQLException ex) {

@@ -90,7 +90,7 @@ public class FuncionarioDao {
         sql = "delete from funcionario where funmatricula =? ";
         pstm = conecta.prepareStatement(sql);
         pstm.setInt(1, funmatricula);
-        pstm.execute();
+        pstm.execute();//execute serve para inserir
         
         FabricaConexao.fecharConexao();
         
@@ -116,8 +116,25 @@ public class FuncionarioDao {
         return lista;
     }//fim de lista 
     
-    public void validarLogin(){
+    public Funcionario validarLogin(String login, String senha) throws SQLException{
+        Funcionario funcionario = null;
         
+        conecta = FabricaConexao.conexaoBanco();
+        sql = "select * from funcionario where funlogin = ? and funsenha = ? ";
+        pstm = conecta.prepareStatement(sql);
+        pstm.setString(1, login);
+        pstm.setString(2, senha);
+        rs = pstm.executeQuery();//executeQuery é para consultar
+        if(rs.next()){
+            funcionario = new Funcionario();
+            funcionario.setMatricula(rs.getInt("funmatricula"));
+            funcionario.setNome(rs.getString("funnome"));
+            funcionario.setLogin(rs.getString("funlogin"));
+        }
+        
+        FabricaConexao.fecharConexao();
+        
+        return funcionario;
     }//fim do método validarLogin
     
     

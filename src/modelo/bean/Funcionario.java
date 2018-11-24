@@ -1,4 +1,3 @@
-
 package modelo.bean;
 
 public class Funcionario {
@@ -48,7 +47,5 @@ public class Funcionario {
     public void setGerente(Funcionario gerente) {
         this.gerente = gerente;
     }
-    
-    
-    
+      
 }

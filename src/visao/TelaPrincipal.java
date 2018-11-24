@@ -8,6 +8,7 @@ package visao;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,9 +22,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        URL url = this.getClass().getResource("/imagens/logo-48x48.png");
+        /*URL url = this.getClass().getResource("/imagens/logo-48x48.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-        this.setIconImage(imagemTitulo);
+        this.setIconImage(imagemTitulo);*/
         setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -42,10 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btCarro = new javax.swing.JToggleButton();
         btConserto = new javax.swing.JToggleButton();
         btRelatorio = new javax.swing.JToggleButton();
+        btSair = new javax.swing.JToggleButton();
         jDprincipal = new javax.swing.JDesktopPane();
         jToolBar2 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLnome = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -143,7 +145,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btRelatorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btRelatorio.setMargin(new java.awt.Insets(3, 14, 3, 14));
         btRelatorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRelatorioActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btRelatorio);
+
+        btSair.setFont(new java.awt.Font("Abel", 0, 14)); // NOI18N
+        btSair.setForeground(new java.awt.Color(102, 102, 102));
+        btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair-48x48.png"))); // NOI18N
+        btSair.setText("Sair");
+        btSair.setFocusable(false);
+        btSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btSair.setMargin(new java.awt.Insets(3, 14, 3, 14));
+        btSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btSair);
 
         javax.swing.GroupLayout jDprincipalLayout = new javax.swing.GroupLayout(jDprincipal);
         jDprincipal.setLayout(jDprincipalLayout);
@@ -163,10 +185,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Usuário: ");
         jToolBar2.add(jLabel1);
 
-        jLabel2.setFont(new java.awt.Font("Abel", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setText("nomeaqui");
-        jToolBar2.add(jLabel2);
+        jLnome.setFont(new java.awt.Font("Abel", 0, 12)); // NOI18N
+        jLnome.setForeground(new java.awt.Color(0, 0, 204));
+        jLnome.setText("nomeaqui");
+        jToolBar2.add(jLnome);
 
         jToolBar3.setRollover(true);
 
@@ -349,7 +371,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jDprincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -424,6 +446,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_btConsertoActionPerformed
 
+    private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
+        // TODO add your handling code here:
+        TelaBuscarModelo buscarModelo = new TelaBuscarModelo();
+        jDprincipal.add(buscarModelo);
+        buscarModelo.setVisible(true);
+    }//GEN-LAST:event_btRelatorioActionPerformed
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        int opcaoExc = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair do KoT ? ", "Logoff" ,JOptionPane.YES_NO_OPTION);
+        if(opcaoExc == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -465,6 +501,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton btConserto;
     private javax.swing.JToggleButton btLocacao;
     private javax.swing.JToggleButton btRelatorio;
+    private javax.swing.JToggleButton btSair;
     private javax.swing.JMenuItem itCarro;
     private javax.swing.JMenuItem itCategoria;
     private javax.swing.JMenuItem itCliente;
@@ -481,8 +518,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itperfil;
     public static javax.swing.JDesktopPane jDprincipal;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLnome;
     private javax.swing.JMenu jMarquivo;
     private javax.swing.JMenu jMconserto;
     private javax.swing.JMenuBar jMenuBar1;

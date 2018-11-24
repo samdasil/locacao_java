@@ -5,6 +5,13 @@
  */
 package visao;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.bean.Funcionario;
+import modelo.dao.FuncionarioDao;
+
 /**
  *
  * @author Neturno
@@ -31,7 +38,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jTlogin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTsenha = new javax.swing.JPasswordField();
         jTentrar = new javax.swing.JToggleButton();
         jTfechar = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
@@ -56,7 +63,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jTlogin.setName("Login"); // NOI18N
         jTlogin.setSelectedTextColor(new java.awt.Color(102, 102, 102));
         jTlogin.setSelectionColor(new java.awt.Color(255, 255, 255));
-        jTlogin.setSelectionStart(0);
         jTlogin.setVerifyInputWhenFocusTarget(false);
         jTlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,11 +76,15 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(187, 117, 55));
         jLabel3.setText("Senha");
 
-        jPasswordField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPasswordField1.setToolTipText("Senha");
-        jPasswordField1.setBorder(null);
-        jPasswordField1.setCaretPosition(0);
+        jTsenha.setForeground(new java.awt.Color(102, 102, 102));
+        jTsenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTsenha.setToolTipText("Senha");
+        jTsenha.setBorder(null);
+        jTsenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTsenhaActionPerformed(evt);
+            }
+        });
 
         jTentrar.setForeground(new java.awt.Color(102, 102, 102));
         jTentrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/entrar.png"))); // NOI18N
@@ -82,6 +92,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jTentrar.setBorderPainted(false);
         jTentrar.setContentAreaFilled(false);
         jTentrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTentrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTentrarActionPerformed(evt);
+            }
+        });
 
         jTfechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fechar-2.png"))); // NOI18N
         jTfechar.setBorder(null);
@@ -94,7 +109,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Droid Serif", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Abel", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(187, 117, 55));
         jLabel4.setText("Locação de Carros - KoT");
 
@@ -103,60 +118,66 @@ public class TelaLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(217, 217, 217)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jTlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTentrar)
-                                .addGap(50, 50, 50)
-                                .addComponent(jTfechar)
-                                .addGap(37, 37, 37))
-                            .addComponent(jLabel1))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                            .addComponent(jTlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jTentrar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTfechar))
+                                .addComponent(jTsenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
                 .addComponent(jTlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(1, 1, 1)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTfechar))
-                .addGap(20, 20, 20))
+                    .addComponent(jTfechar, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(680, 520));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTloginActionPerformed
-        //validarLogin(String login, String senha);//chamar método pra validar Login
-        //
-        
+        realizarLogin();
     }//GEN-LAST:event_jTloginActionPerformed
 
     private void jTfecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfecharActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jTfecharActionPerformed
+
+    private void jTentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTentrarActionPerformed
+        realizarLogin();
+    }//GEN-LAST:event_jTentrarActionPerformed
+
+    private void jTsenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTsenhaActionPerformed
+        realizarLogin();
+    }//GEN-LAST:event_jTsenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +219,33 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JToggleButton jTentrar;
     private javax.swing.JToggleButton jTfechar;
     private javax.swing.JTextField jTlogin;
+    private javax.swing.JPasswordField jTsenha;
     // End of variables declaration//GEN-END:variables
+
+    private void realizarLogin(){
+        String login = jTlogin.getText();
+        String senha = String.valueOf(jTsenha.getPassword());        
+        Funcionario funcionario = new Funcionario();
+        FuncionarioDao funDao = new FuncionarioDao();
+        
+        try {
+            funcionario = funDao.validarLogin(login, senha);
+            if(funcionario == null){
+                JOptionPane.showMessageDialog(null, "Login ou senha inválidos.");
+                jTlogin.requestFocus();
+            }else{
+                TelaPrincipal obj = new TelaPrincipal();
+                dispose();
+                obj.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Bem vindo ao KoT " + funcionario.getNome() );
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao validar login: "+ ex);
+        }
+        
+    }
 }

@@ -149,7 +149,7 @@ public class ConsertoDao {
     public List<Conserto> buscar(String busca) throws SQLException{
         Conserto conserto = null;
         conecta = FabricaConexao.conexaoBanco();
-        sql = "select * from conserto join carro on carchassi = concarchassi join modelo on oficodigo = conoficodigo "
+        sql = "select * from conserto join carro on carchassi = concarchassi join oficina on oficodigo = conoficodigo "
             + "where concodigo = '"+busca+"' or carchassi like '%"+busca+"%' or carplaca like '%"+busca+"%' "
             + "or ofinome like '%"+busca+"%' order by concodigo";
         pstm = conecta.prepareStatement(sql);

@@ -502,14 +502,29 @@ public class TelaEditarCarro extends javax.swing.JDialog {
     }
     
     public void receberDados(Carro carro){
-        
+        int status = carro.getStatus();
         jTchassi.setText(carro.getChassi());
         jTplaca.setText(carro.getPlaca());
         jTano.setText(Integer.toString(carro.getAno()));
         jTcor.setText(carro.getCor());
-        cbStatus.setSelectedIndex(carro.getStatus());
-        cbCategoria.setSelectedItem(carro.getCategoria());
-        cbModelo.setSelectedItem(carro.getModelo());
+        
+        switch (status) {
+            case 0:
+                cbStatus.getModel().setSelectedItem("Disponível");
+                break;
+            case 1:
+                cbStatus.getModel().setSelectedItem("Alugado");
+                break;
+            case 2:
+                cbStatus.getModel().setSelectedItem("Manutenção");
+                break;
+            default:
+                cbStatus.getModel().setSelectedItem("Indisponível");
+                break;
+        }
+        
+        cbCategoria.getModel().setSelectedItem(carro.getCategoria());
+        cbModelo.getModel().setSelectedItem(carro.getModelo());
         
     }
 }

@@ -130,5 +130,9 @@ public class ModeloDao {
         FabricaConexao.fecharConexao();
         return lista;
     }//fim de lista de pesquisa
+
+    public void excluir(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
